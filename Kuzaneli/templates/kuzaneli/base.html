@@ -1,0 +1,69 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel = "stylesheet" href='{% static 'kuzaneli/style/fa/css/all.css' %}'>
+        <link rel="stylesheet" href='{% static 'kuzaneli/bootstrap-4.5.3-dist/css/bootstrap.min.css' %}'>
+        <link rel="icon" href='{% static 'kuzaneli/img/BarIcon.png' %}'>
+        <link rel = "stylesheet" href = '{% static 'kuzaneli/style/style.css' %}'>
+        <link rel = "stylesheet" href = '{% static 'kuzaneli/style/menu.css' %}'>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+    <header class="pb-3 pt-md-3 pb-md-4 px-md-5">
+
+        <div class="navbar navbar-expand-md navbar-light pt-3 pb-2 pb-md-3">
+            <a class = "navbar-brand ml-3 ml-md-2" href={% url 'home' %}><div id="logo">Salomé Kuzaneli</div></a>
+            <div class="d-md-none ml-auto"><a class="nav-item active nav-link far fa-credit-card" id="card" href="{% url 'cart' %}"></a></div>
+            <div class="d-md-none" id="menuButton">
+                <input id="responsive-menu" type="checkbox" onchange="handleChange(this)">
+                <label id="menuButtonMin" for="responsive-menu">
+                    <svg class="ham hamRotate ham4" viewBox="0 0 100 100" width="50" onclick="this.classList.toggle('active')">
+                        <path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path>
+                        <path class="line middle" d="m 70,50 h -40"></path>
+                        <path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path>
+                    </svg>
+                </label>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href = {% url 'home' %} tabindex=-1>Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href = {% url 'walls' %} tabindex=-1>Gallery Walls</a></li>
+                    <li class="nav-item active"><a class="nav-link" href = {% url 'contact' %} tabindex=-1>Contact</a></li>
+                    <li class="nav-item active"><a class="nav-link fab fa-instagram" href = "https://www.instagram.com/studiokuzaneli/" target = "_blank" id = "icon" tabindex=-1></a></li>
+                </ul>
+            </div>
+            <div class="d-none d-md-block"><a class="nav-item active nav-link far fa-credit-card" id="card" href="{% url 'cart' %}"></a></div>
+        </div>
+    </header>
+    <div id="overlay" class="d-flex justify-content-center align-items-center text-center">
+        <ul class="navbar-nav" id="collapsedNavItems">
+            <li class="nav-item active"><a id="menuItem" href = {% url 'home' %} tabindex=-1>Home</a></li>
+            <li class="nav-item active"><a id="menuItem" href = {% url 'walls' %} tabindex=-1>Gallery Walls</a></li>
+            <li class="nav-item active"><a id="menuItem" href = {% url 'contact' %} tabindex=-1>Contact</a></li>
+        </ul>
+        <ul class="navbar-nav fixed-bottom">
+            <li class="nav-item active"><a class="nav-link fab fa-instagram" href = "https://www.instagram.com/studiokuzaneli/" target = "_blank" id = "icon2" tabindex=-1></a></li>
+        </ul>
+    </div>
+
+    {% block body%}
+    {% endblock %}
+    <hr>
+    <hr>
+    <div class="container-md" id="contact">
+            <p>Sign up with your email address to receive news and updates.</p>
+            <form class="container-fluid" id="subscribe">
+                {{ form }}
+                <input id="submitButton" type="submit" value="Sign Up">
+            </form>
+    </div>
+    <script src = {% static 'kuzaneli/js/index.js' %}></script>
+    <script src = {% static 'kuzaneli/js/jquery-3.5.1.min.js' %}></script>
+    <script src = {% static 'kuzaneli/js/popper.min.js' %}></script>
+    <script src = {% static 'kuzaneli/bootstrap-4.5.3-dist/js/bootstrap.min.js' %}></script>
+    </body>
+</html>

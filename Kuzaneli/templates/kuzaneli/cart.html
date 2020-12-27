@@ -1,0 +1,66 @@
+{% extends 'kuzaneli/base.html' %}
+{% load cart_tag %}
+{% load static %}
+
+{% block title %}
+    Shopping list
+{% endblock %}
+{% block body %}
+    <div id = "cartheader" class="py-5 noselect">Shopping cart</div>
+    <div class="container-fluid px-sm-5">
+        <div class="row">
+            {% if request.session.cart.items %}
+                <div class="col-md-8 p-0 px-sm-2">
+                    <div id="cartItemBoxHeader" class="mx-3 pt-3 d-flex align-items-center justify-content-between noselect">
+                        <p>Item</p>
+                        <p>Price</p>
+                    </div>
+                        {% for key,value in request.session.cart.items %}
+                            <div class="col-sm-12 py-4" id="cartItem">
+                                <div class="float-right"><a class="far fa-times-circle" href="{% url 'item_clear' value.product_id %}"></a></div>
+                                {% if value.vorh == "V" %}
+                                        <a href="{% url 'picture' value.name %}" class="d-flex align-items-center justify-content-sm-between">
+                                            <div id="cartImageHolderV"><img alt="{{ value.name }}" id="cartImageV" src="{{ value.image }}"></div>
+                                            <div id="cartItemText" class="pl-1 text-sm-center">{{ value.name }}</div>
+                                            <div class="ml-auto" id="jsPrice">&#8364 {{ value.price }}</div>
+                                        </a>
+                                {% elif value.vorh == "H" %}
+                                    <a href="{% url 'picture' value.name %}" class="d-flex align-items-center justify-content-sm-between">
+                                        <div id="cartImageHolderH"><img alt="{{ value.name }}" id="cartImageH" src="{{ value.image }}"></div>
+                                        <div id="cartItemText" class="pl-1 text-sm-center">{{ value.name }}</div>
+                                        <div class="ml-auto">&#8364 {{ value.price }}</div>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                </div>
+                <div class="col-md-4 pt-md-5 mt-md-2">
+                    <div class="ml-auto pb-2 float-right mb-n4"><a class="far fa-times-circle" href="{% url 'cart_clear' %}"></a></div>
+                    <div id="cartPriceBox" class="p-2">
+                        <div class="bborder d-flex justify-content-between">
+                            <p class="mb-1">Order Summary:</p>
+                            <p class="m-0">{{request.session.cart|length}} items</p>
+                        </div>
+                        <div class="py-1 d-flex justify-content-between align-items-end">
+                            <p class="mb-1">Sub-total</p>
+                            <p id="Subortotal" class="mb-0 float-right">{{ cart_total_amount }}</p>
+                        </div>
+                        <div class="bborder py-1 d-flex justify-content-between align-items-end">
+                            <p class="mb-1">Tax</p>
+                            <p class="mb-0 float-right">Incl.</p>
+                        </div>
+                        <div class="pt-1 d-flex justify-content-between align-items-end">
+                            <p class="mb-0">Total</p>
+                            <p id="Subortotal" class="mb-0 float-right">{{ cart_total_amount }}</p>
+                        </div>
+                    </div>
+                    <button class="py-4 mt-5" id="addToCart">Proceed to purchase</button>
+                </div>
+
+            {% else %}
+                <div class="container-fluid text-center"><p>Shopping list is empty</p></div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

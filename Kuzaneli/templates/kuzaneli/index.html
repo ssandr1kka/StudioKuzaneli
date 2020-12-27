@@ -1,0 +1,13 @@
+{% extends 'kuzaneli/base.html' %}
+
+
+{% block title %}Studio Kuzaneli{% endblock %}
+
+{% block body %}
+    <div class="d-flex align-items-center justify-content-center" id="homepageContainer">
+        <div>
+            <p id="makeItYours">Make it yours.</p>
+            <a href="{% url 'walls' %}"><div id="shopnow">Shop Now</div></a>
+        </div>
+    </div>
+{% endblock %}

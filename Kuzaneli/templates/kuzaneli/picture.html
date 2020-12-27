@@ -1,0 +1,102 @@
+{% extends 'kuzaneli/base.html' %}
+{% load cart_tag %}
+{% load static %}
+
+{% block title %}
+    {{ picture.title }}
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="px-lg-5 px-md-3 px-3">
+            {% if picture.vorh == "V" %}
+                <div class="row px-md-3">
+                    <div class="col-sm-12 col-md-6 text-left">
+                        <div class="pt-md-3 pr-0">
+                            <div class="noselect pt-md-5 pb-lg-5 pb-md-3" id="picturePath">
+                                <p class="pt-lg-3"> <a href="{% url 'walls' %}">Gallery Walls</a>
+                                 &#8692
+                                <a href="{% url 'picture' picture.title %}">{{ picture.title }}</a></p>
+                            </div>
+                        </div>
+                        <div class="pb-lg-5" id="pictureHeight">
+                            <img id="imageFit" class="img-fluid" src="{{  picture.image.url }}" alt="{{ picture.title }}"/>
+                        </div>
+                        <div class="pt-md-3 pb-md-5" id="picturePath">
+                            <p>Digital Photo | Download without Watermarks</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-left pt-md-5 mt-lg-5">
+                        <div id="pictureText" class="text-left pt-md-5 mt-md-5 px-md-3">
+                            <div class="pt-md-5">
+                                <div> {{ picture.title }} </div>
+                                <div id="picturePriceTag" class="pt-2"> &#8364 {{ picture.price }} </div>
+                            </div>
+                            {% if incart %}
+                                <div class="pt-3">
+                                    <a href="{% url 'item_clear_2' picture.id %}">
+                                        <button class="py-2 py-md-0" id="addedToCart">
+                                            Remove from cart
+                                        </button>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="pt-3">
+                                    <a href="{% url 'cart_add' picture.id %}">
+                                        <button class="py-2 py-md-0" id="addToCart">
+                                            Add to cart
+                                        </button>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% elif picture.vorh == 'H' %}
+                <div class="row px-md-3">
+                    <div class="col-sm-12 text-left">
+                        <div class="pt-md-3 pr-0">
+                            <div class="pt-md-5 pb-lg-5 pb-md-3" id="picturePath">
+                                <p class="pt-lg-3"> <a href="{% url 'walls' %}">Gallery Walls</a>
+                                 &#8692
+                                <a href="{% url 'picture' picture.title %}">{{ picture.title }}</a></p>
+                            </div>
+                        </div>
+                        <div class="pb-lg-5" id="pictureHeight">
+                            <img id="imageFit" class="img-fluid" src="{{  picture.image.url }}" alt="{{ picture.title }}"/>
+                        </div>
+                        <div class="pt-md-3 pb-md-5" id="picturePath">
+                            <p>Digital Photo | Download without Watermarks</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="pictureText" class="text-center px-md-3">
+                            <div class="pt-md-3">
+                                <div> {{ picture.title }} </div>
+                                <div id="picturePriceTag" class="pt-2"> &#8364 {{ picture.price }} </div>
+                            </div>
+                            <div class="pt-3 px-md-5 mx-md-5">
+                                <div class="px-lg-5 mx-lg-5">
+                                    {% if incart %}
+                                        <a href="{% url 'item_clear_2' picture.id %}">
+                                            <button class="py-2 py-md-0" id="addedToCart">
+                                                Remove from cart
+                                            </button>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'cart_add' picture.id %}">
+                                            <button class="py-2 py-md-0" id="addToCart">
+                                                Add to cart
+                                            </button>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

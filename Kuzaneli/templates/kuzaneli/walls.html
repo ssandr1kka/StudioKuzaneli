@@ -1,0 +1,50 @@
+{% extends 'kuzaneli/base.html' %}
+{% load static %}
+
+{% block title%}
+    Gallery Walls
+{% endblock %}
+
+{% block body %}
+    <div id = "wallsheader" class="pb-3 pt-5 py-md-5">Gallery Walls</div>
+    <p id="DigitalP">Digital Photos</p>
+    <hr id = "line">
+    <div id="container">
+        <div class="container-lg">
+            <div class="row">
+                {% if object_list %}
+                    {% for item in object_list %}
+                        {% if item.vorh == 'V' %}
+                            <div class="col-sm-12 col-md-6 text-center px-lg-5">
+                                <div class="container-sm px-md-5">
+                                    <div class="text-left">
+                                        <a href="{% url 'picture' item.title %}"><img class="img-fluid" src="{{  item.image.url }}" alt="{{ item.title }}"/>
+                                        <div id="imageText" class="text-left mb-3">
+                                            <div> {{ item.title }} </div>
+                                            <div id="priceTag"> &#8364 {{ item.price }} </div>
+                                        </div></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif item.vorh == 'H' %}
+                            <div class="col-sm-12 text-center px-lg-5">
+                                <div class="container-fluid px-sm-5 px-3">
+                                    <div class="text-left">
+                                        <a href="{% url 'picture' item.title %}">
+                                        <img id="horizontalIMGs" src="{{  item.image.url }}" alt="{{ item.title }}"/>
+                                        <div id="imageText" class="text-left mb-3">
+                                            <div> {{ item.title }} </div>
+                                            <div id="priceTag"> &#8364 {{ item.price }} </div>
+                                        </div></a>
+                                    </div>
+                                </div>
+                            </div>
+                         {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="container text-center pb-5"><p>Oops the catalogue is empty yet<br> We are working on it, be tuned!</p></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
