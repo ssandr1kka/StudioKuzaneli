@@ -3,7 +3,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -15,12 +14,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'Kuzaneli.apps.KuzaneliConfig',
     'Marketing.apps.MarketingConfig',
+    'watermarker',
     'cart',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,7 +63,6 @@ CART_SESSION_ID = 'cart'
 
 WSGI_APPLICATION = 'StudioKuzaneli.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -78,7 +76,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -97,7 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -123,4 +119,3 @@ MEDIA_URL = '/media/'
 MAILCHIMP_API_KEY = "35364ad272cb2dcc7f590dba10cac27e-us7"
 MAILCHIMP_DATA_CENTER = "us7"
 MAILCHIMP_EMAIL_LIST_ID = 'bbb26cbf19'
-

@@ -1,5 +1,6 @@
 {% extends 'kuzaneli/base.html' %}
 {% load static %}
+{% load watermark %}
 
 {% block title%}
     Gallery Walls
@@ -18,11 +19,13 @@
                             <div class="col-sm-12 col-md-6 text-center px-lg-5">
                                 <div class="container-sm px-md-5">
                                     <div class="text-left">
-                                        <a href="{% url 'picture' item.title %}"><img class="img-fluid" src="{{  item.image.url }}" alt="{{ item.title }}"/>
-                                        <div id="imageText" class="text-left mb-3">
-                                            <div> {{ item.title }} </div>
-                                            <div id="priceTag"> &#8364 {{ item.price }} </div>
-                                        </div></a>
+                                        <a href="{% url 'picture' item.title %}">
+                                            <img class="img-fluid" src="{{ item.image.url|watermark:"watermark,position=50%x-10%,opacity=100,scale=1.3" }}" alt="{{ item.title }}"/>
+                                            <div id="imageText" class="text-left mb-3">
+                                                <div> {{ item.title }} </div>
+                                                <div id="priceTag"> &#8364 {{ item.price }} </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -31,11 +34,12 @@
                                 <div class="container-fluid px-sm-5 px-3">
                                     <div class="text-left">
                                         <a href="{% url 'picture' item.title %}">
-                                        <img id="horizontalIMGs" src="{{  item.image.url }}" alt="{{ item.title }}"/>
-                                        <div id="imageText" class="text-left mb-3">
-                                            <div> {{ item.title }} </div>
-                                            <div id="priceTag"> &#8364 {{ item.price }} </div>
-                                        </div></a>
+                                            <img id="horizontalIMGs" src="{{ item.image.url|watermark:"watermark2,position=50%x-10%,opacity=100,scale=1.3" }}" alt="{{ item.title }}"/>
+                                            <div id="imageText" class="text-left mb-3">
+                                                <div> {{ item.title }} </div>
+                                                <div id="priceTag"> &#8364 {{ item.price }} </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

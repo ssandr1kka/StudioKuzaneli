@@ -1,4 +1,5 @@
 {% extends 'kuzaneli/base.html' %}
+{% load watermark %}
 {% load cart_tag %}
 {% load static %}
 
@@ -19,7 +20,7 @@
                             </div>
                         </div>
                         <div class="pb-lg-5" id="pictureHeight">
-                            <img id="imageFit" class="img-fluid" src="{{  picture.image.url }}" alt="{{ picture.title }}"/>
+                            <img id="imageFit" class="img-fluid" src="{{ picture.image.url|watermark:"watermark,position=50%x-10%,opacity=100,scale=1.3" }}" alt="{{ picture.title }}"/>
                         </div>
                         <div class="pt-md-3 pb-md-5" id="picturePath">
                             <p>Digital Photo | Download without Watermarks</p>
@@ -62,7 +63,7 @@
                             </div>
                         </div>
                         <div class="pb-lg-5" id="pictureHeight">
-                            <img id="imageFit" class="img-fluid" src="{{  picture.image.url }}" alt="{{ picture.title }}"/>
+                            <img id="imageFit" class="img-fluid" src="{{ picture.image.url|watermark:"watermark2,position=50%x-10%,opacity=100,scale=1.3" }}" alt="{{ picture.title }}"/>
                         </div>
                         <div class="pt-md-3 pb-md-5" id="picturePath">
                             <p>Digital Photo | Download without Watermarks</p>
