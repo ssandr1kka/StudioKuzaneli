@@ -55,7 +55,7 @@
                             <p id="Subortotal" class="mb-0 float-right">{{ cart_total_amount }}</p>
                         </div>
                     </div>
-                    <button class="py-4 mt-5" id="addToCart">Proceed to purchase</button>
+                    <button class="py-4 mt-5" id="addToCart"><a href="{% url 'checkout' %}">Proceed to purchase</a></button>
                 </div>
 
             {% else %}

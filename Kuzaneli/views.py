@@ -6,6 +6,7 @@ from .models import Picture
 from Marketing.models import Signup
 from Marketing.forms import EmailSignUpForm
 from cart.cart import Cart
+import stripe
 
 
 def emailsubscription(request):
@@ -134,3 +135,28 @@ def cart_clear(request):
     pics = Cart(request)
     pics.clear()
     return HttpResponseRedirect(reverse(viewname='cart'))
+
+def checkout(request):
+    cart = request.session.get(settings.CART_SESSION_ID)
+    total = 0
+    if not cart:
+        return HttpResponseRedirect(reverse(viewname='cart'))
+    for key, value in cart.items():
+        total += float(value["price"])
+    total = int(total) * 100
+
+    stripe.api_key = settings.STRIPE_PRIVATE_KEY
+    intent = stripe.PaymentIntent.create(
+        amount=total,
+        currency='eur',
+        # Verify your integration in this guide by including this parameter
+        metadata={'integration_check': 'accept_a_payment'},
+    )
+
+    context = {
+        "STRIPE_PRIVATE_KEY": stripe.api_key,
+        "clientSecret": intent.client_secret,
+        "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY,
+        "total": total
+    }
+    return render(request, "kuzaneli/checkout.html", context)

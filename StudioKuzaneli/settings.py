@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-
+SECRET_KEY = 'w5s7g0#al%xlwi%f-$t@swsf_dzq5j_4ihku-iy1nm2bv)zg#y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -108,13 +108,14 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
-MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 MAILCHIMP_API_KEY = "35364ad272cb2dcc7f590dba10cac27e-us7"
 MAILCHIMP_DATA_CENTER = "us7"
 MAILCHIMP_EMAIL_LIST_ID = 'bbb26cbf19'
+
+STRIPE_PUBLIC_KEY = 'pk_live_51HL5pVKq68cJUibwvI3VvBPCoMddLpuX33itCVS47ho64F7HDR6NQn2JzKew8JTgHiGcfPI4rsEVEaqjtbizS7u500LNGAF2Lk'
+STRIPE_PRIVATE_KEY = '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'
