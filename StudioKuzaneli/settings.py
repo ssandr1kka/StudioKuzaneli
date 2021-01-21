@@ -1,5 +1,7 @@
 from pathlib import Path
-from decouple import config
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,12 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=True)
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = [config('ALLOWED_HOSTS', default='*')]
+ALLOWED_HOSTS = [".studiokuzaneli.com", "localhost", '127.0.0.1']
 
 # Application definition
 
@@ -67,12 +69,12 @@ WSGI_APPLICATION = 'StudioKuzaneli.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -113,10 +115,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-MAILCHIMP_API_KEY = config('MAILCHIMP_API_KEY')
-MAILCHIMP_DATA_CENTER = config('MAILCHIMP_DATA_CENTER')
-MAILCHIMP_EMAIL_LIST_ID = config('MAILCHIMP_EMAIL_LIST_ID')
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
 
-STRIPE_PUBLIC_KEY = config('STRIPE_PUB_KEY')
-STRIPE_PRIVATE_KEY = config('STRIPE_PRIV_KEY')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUB_KEY')
+STRIPE_PRIVATE_KEY = os.environ.get('STRIPE_PRIV_KEY')
 
